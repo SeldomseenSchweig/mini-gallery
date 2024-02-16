@@ -1,0 +1,35 @@
+import React from "react";
+import "./Splash.css";
+import { ChakraProvider, Button } from "@chakra-ui/react";
+import { Link } from "react-router-dom"; // Import Link from React Router
+import { Helmet } from "react-helmet";
+
+function Splash({ isLoggedIn, onLogin, onLogout }) {
+  console.log("+++++++++++++++++++++++++++  ", isLoggedIn);
+  return (
+    <ChakraProvider>
+      <Helmet>
+        <title>Miniature Gallery Home</title>
+      </Helmet>
+      <div className="App">
+        <header className="App-header">
+          <h1>Miniature Gallery</h1>
+          <p>Share your painted miniatures with the world</p>
+          <Link to="/signup">
+            <Button colorScheme="orange" spacing={4}>
+              Get Started
+            </Button>
+          </Link>{" "}
+        </header>
+        <div className="App-content">
+          {/* Your main content will go here once the user is logged in */}
+        </div>
+        <footer className="App-footer">
+          <p>&copy; 2023 Mini Gallery</p>
+        </footer>
+      </div>
+    </ChakraProvider>
+  );
+}
+
+export default Splash;
