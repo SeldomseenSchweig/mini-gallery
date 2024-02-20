@@ -5,7 +5,6 @@ import { Link } from "react-router-dom"; // Import Link from React Router
 import { Helmet } from "react-helmet";
 
 function Splash({ isLoggedIn, onLogin, onLogout }) {
-  console.log("+++++++++++++++++++++++++++  ", isLoggedIn);
   return (
     <>
       <Helmet>

@@ -41,7 +41,6 @@ const NavLink = (props) => {
 
 export default function Navbar({ isLoggedIn, onLogout }) {
   const { colorMode, toggleColorMode } = useColorMode();
-  console.log(colorMode);
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
