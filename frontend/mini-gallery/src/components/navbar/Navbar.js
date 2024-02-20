@@ -41,6 +41,7 @@ const NavLink = (props) => {
 
 export default function Navbar({ isLoggedIn, onLogout }) {
   const { colorMode, toggleColorMode } = useColorMode();
+  console.log(colorMode);
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -82,7 +83,7 @@ export default function Navbar({ isLoggedIn, onLogout }) {
                     </Center>
                     <br />
                     <MenuDivider />
-                    <MenuItem>Your Servers</MenuItem>
+                    <MenuItem>Projects</MenuItem>
                     <MenuItem>Account Settings</MenuItem>
                     <MenuItem
                       onClick={() => {
@@ -93,7 +94,7 @@ export default function Navbar({ isLoggedIn, onLogout }) {
                     </MenuItem>
                   </MenuList>
                   <Button onClick={toggleColorMode}>
-                    {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+                    {colorMode === "light" ? <SunIcon /> : <MoonIcon />}
                   </Button>
                 </Menu>
               ) : (

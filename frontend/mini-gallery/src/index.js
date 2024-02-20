@@ -5,6 +5,8 @@ import Splash from "./components/splash/Splash";
 import Signup from "./components/signup/Signup";
 import Navbar from "./components/navbar/Navbar";
 import "./index.css";
+import theme from "./theme";
+import { ChakraProvider, Button } from "@chakra-ui/react";
 
 const App = () => {
   // Create a state variable to track the login status
@@ -33,4 +35,9 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <ChakraProvider theme={theme}>
+    <App />
+  </ChakraProvider>,
+  document.getElementById("root")
+);

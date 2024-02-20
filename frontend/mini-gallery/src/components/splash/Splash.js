@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 function Splash({ isLoggedIn, onLogin, onLogout }) {
   console.log("+++++++++++++++++++++++++++  ", isLoggedIn);
   return (
-    <ChakraProvider>
+    <>
       <Helmet>
         <title>Miniature Gallery Home</title>
       </Helmet>
@@ -28,7 +28,7 @@ function Splash({ isLoggedIn, onLogin, onLogout }) {
           <p>&copy; 2023 Mini Gallery</p>
         </footer>
       </div>
-    </ChakraProvider>
+    </>
   );
 }
 
