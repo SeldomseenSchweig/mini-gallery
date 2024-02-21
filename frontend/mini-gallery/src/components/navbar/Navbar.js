@@ -17,6 +17,7 @@ import {
   useColorMode,
   Center,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 
@@ -42,11 +43,15 @@ const NavLink = (props) => {
 export default function Navbar({ isLoggedIn, onLogout }) {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const textColor = colorMode === "light" ? "black" : "white";
+
   return (
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={"8vh"} alignItems={"center"} justifyContent={"space-between"}>
-          <Box fontFamily={"MoriaCitadel"}>Mini Pics</Box>
+          <Link to={"/"}>
+            <Box fontFamily={"MoriaCitadel"}>Mini Pics</Box>
+          </Link>
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
@@ -66,7 +71,7 @@ export default function Navbar({ isLoggedIn, onLogout }) {
                       }
                     />
                   </MenuButton>
-                  <MenuList alignItems={"center"} style={{ color: "white" }}>
+                  <MenuList alignItems={"center"} style={{ color: textColor }}>
                     <br />
                     <Center>
                       <Avatar

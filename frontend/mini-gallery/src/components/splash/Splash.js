@@ -1,6 +1,6 @@
 import React from "react";
 import "./Splash.css";
-import { ChakraProvider, Button } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom"; // Import Link from React Router
 import { Helmet } from "react-helmet";
 
@@ -8,7 +8,7 @@ function Splash({ isLoggedIn, onLogin, onLogout }) {
   return (
     <>
       <Helmet>
-        <title>Miniature Gallery Home</title>
+        <title>Miniature Gallery</title>
       </Helmet>
       <div className="App">
         <header className="App-header">
@@ -17,6 +17,11 @@ function Splash({ isLoggedIn, onLogin, onLogout }) {
           <Link to="/signup">
             <Button colorScheme="orange" spacing={4}>
               Get Started
+            </Button>
+          </Link>{" "}
+          <Link to="/signin">
+            <Button colorScheme="green" spacing={4} marginTop={"5px"}>
+              Sign In
             </Button>
           </Link>{" "}
         </header>

@@ -1,4 +1,5 @@
 import { extendTheme } from "@chakra-ui/react";
+import { color } from "framer-motion";
 
 const theme = extendTheme({
   config: {
@@ -6,9 +7,7 @@ const theme = extendTheme({
     useSystemColorMode: false,
   },
   styles: {
-    global: {
-      // Add any global styles here
-    },
+    global: {},
   },
 });
 

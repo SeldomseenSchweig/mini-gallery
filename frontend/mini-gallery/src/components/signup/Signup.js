@@ -5,12 +5,11 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Nav from "../navbar/Navbar";
 
-function Signup() {
-  // Add your signup logic here
+function Signup({ form }) {
   return (
     <ChakraProvider>
       <Helmet>
-        <title>Sign Up</title>
+        <title> {form}</title>
       </Helmet>
 
       <div className="App" fontFamily={"MoriaCitadel"}>
@@ -19,7 +18,7 @@ function Signup() {
             <Button colorScheme="blue"> Home</Button>
           </Link>
 
-          <h1>Sign Up</h1>
+          <h1>{form}</h1>
           <br></br>
           {/* Add your signup form with input fields here */}
           <form>
@@ -29,11 +28,16 @@ function Signup() {
                 className="input"
                 placeholder="Username"
               />
-              <Input
-                focusBorderColor="lime"
-                className="input"
-                placeholder="Email"
-              />
+              {form === "Sign up" ? (
+                <Input
+                  focusBorderColor="lime"
+                  className="input"
+                  placeholder="Email"
+                />
+              ) : (
+                <></>
+              )}
+
               <Input
                 focusBorderColor="lime"
                 className="input"
@@ -42,7 +46,7 @@ function Signup() {
               />
             </Stack>
             <Button colorScheme="blue" type="submit">
-              Sign Up
+              {form}
             </Button>
           </form>
         </header>

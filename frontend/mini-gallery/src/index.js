@@ -28,8 +28,16 @@ const App = () => {
       <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Splash />} />
-        <Route path="/signup" element={<Signup />} handleLogin={handleLogin} />
-        <Route path="/signin" element={<Signup />} handleLogin={handleLogin} />
+        <Route
+          path="/signup"
+          element={<Signup form={"Sign up"} />}
+          handleLogin={handleLogin}
+        />
+        <Route
+          path="/signin"
+          element={<Signup form={"Sign in"} />}
+          handleLogin={handleLogin}
+        />
       </Routes>
     </Router>
   );
