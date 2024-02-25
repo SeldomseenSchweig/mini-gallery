@@ -10,9 +10,20 @@ const status = {
   UA: "Un-Assigned",
 };
 
-app.get("/miniatures/:status", (req, res) => {
-  res.send(status[req.params.status]);
+const USERS = {
+  hayduke: "password123",
+  mary: "password456",
+};
+
+app.get("/miniatures/users", (req, res) => {
+  res.send(USERS);
 });
+
+app.post("/miniatures/users", (req, res) => {
+  USERS[req.body["username"]] = req.body["password"];
+  res.send(req.body);
+});
+
 app.listen(3001, () => {
   console.log("running on port 3001");
 });

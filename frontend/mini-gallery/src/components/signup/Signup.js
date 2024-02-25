@@ -20,7 +20,7 @@ function Signup({ form }) {
 
           <h1>{form}</h1>
           <br></br>
-          {/* Add your signup form with input fields here */}
+
           <form>
             <Stack size={3}>
               <Input
