@@ -10,7 +10,7 @@ import { ChakraProvider, Button } from "@chakra-ui/react";
 
 const App = () => {
   // Create a state variable to track the login status
-  const [isLoggedIn, setLoggedIn] = useState(true);
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
   // Function to handle login
   const handleLogin = () => {
