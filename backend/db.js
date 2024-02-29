@@ -2,14 +2,10 @@ const { Client } = require("pg");
 
 let DB_URI;
 
-if (process.env.NODE === "test") {
-  DB_URI = "postgresql:///miniaturesdb_test";
-} else {
-  DB_URI = "postgresql:///miniaturesdb";
-}
+DB_URI = "postgresql:///minigallerydb";
 
 let db = new Client({
-  connectString: DB_URI,
+  connectionString: DB_URI,
 });
 
 db.connect();
