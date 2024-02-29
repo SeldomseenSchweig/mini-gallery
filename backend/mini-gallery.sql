@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS miniaturesdb;
+DROP DATABASE IF EXISTS minigallerydb;
 
-CREATE DATABASE miniaturesdb;
+CREATE DATABASE minigallerydb;
 
-\c miniaturesdb;
+\c minigallerydb;
 
 DROP TABLE IF EXISTS users;
 
