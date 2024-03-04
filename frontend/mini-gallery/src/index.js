@@ -6,6 +6,7 @@ import Signup from "./components/signup/Signup";
 import Navbar from "./components/navbar/Navbar";
 import "./index.css";
 import theme from "./theme";
+import axios from "axios";
 import { ChakraProvider, Button } from "@chakra-ui/react";
 
 const App = () => {
