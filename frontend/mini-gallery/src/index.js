@@ -15,16 +15,23 @@ const App = () => {
   const [signUp, setSignUp] = useState(false);
 
   // Function to handle login
-  const handleSignIn = async ({ username, password }) => {
+  const handleSignIn = async ({ username, password, email }) => {
     try {
-      await MiniaturesApi.login(username, password);
-      setSignedIn(true);
-    } catch (error) {}
+      let user = await MiniaturesApi.login(username, password);
+
+      if (user.username) {
+        setSignedIn(true);
+      } else {
+        alert(user[0]);
+      }
+    } catch (error) {
+      alert(error);
+    }
   };
   const handleSignUp = async ({ username, password, email }) => {
     try {
-      await MiniaturesApi.register(username, password, email);
-      setSignUp(true);
+      let res = await MiniaturesApi.register(username, password, email);
+      if (res) setSignUp(true);
     } catch (error) {
       alert(error);
     }

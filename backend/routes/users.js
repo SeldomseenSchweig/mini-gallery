@@ -20,14 +20,16 @@ router.post("/register", async (req, res, next) => {
   }
 });
 
-router.get("/login", async (req, res, next) => {
+router.post("/login", async (req, res, next) => {
   try {
     const user = await User.login(req.body);
     if (!user.username) {
-      return res.status(user.status).json(user);
+      return res.status(400).json(user.message);
     }
-    return res.status(200).json(`Sucessfly found user: ${user.username}`);
-  } catch (error) {}
+    return res.status(200).json(user);
+  } catch (error) {
+    return error;
+  }
 });
 
 module.exports = router;

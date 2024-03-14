@@ -29,7 +29,13 @@ class MiniaturesApi {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
       if (!err.response.data) throw console.error("Something went wrong");
-      let message = err.response.data.error.message;
+      let message;
+      if (err.response.data) {
+        message = err.response.data;
+      } else {
+        message = err.response.data.error.message;
+      }
+
       throw Array.isArray(message) ? message : [message];
     }
   }
@@ -64,14 +70,17 @@ class MiniaturesApi {
 
   /** login. */
 
-  static async login({ username, password }) {
+  static async login(username, password) {
     let data = {
       username: username,
       password: password,
     };
-
-    let res = await this.request("login", data, "get");
-    return res;
+    try {
+      let res = await this.request("users/login", data, "post");
+      return res;
+    } catch (error) {
+      return error;
+    }
   }
 
   static async getUser(testuser) {

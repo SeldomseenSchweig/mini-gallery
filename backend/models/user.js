@@ -41,13 +41,12 @@ class User {
       );
 
       if (userSearch.rowCount === 0) {
-        return new NotFoundError(`Wrong User Name ${username}`);
+        return new Error(`Wrong User Name ${username}`);
       }
       console.log(password === userSearch.rows[0].password);
       let passwordMatch = await compare(password, userSearch.rows[0].password);
       console.log(passwordMatch, password, userSearch.rows[0].password);
-      if (!passwordMatch)
-        return new NotFoundError(`No user with that password found`);
+      if (!passwordMatch) return new Error(`No user with that password found`);
       return userSearch.rows[0];
     } catch (error) {
       return new BadRequestError(`${error}`);

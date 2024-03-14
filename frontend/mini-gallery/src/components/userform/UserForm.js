@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./userForm.css";
-import { ChakraProvider, Button, Input, Stack } from "@chakra-ui/react";
+import { ChakraProvider, Button, Input, Stack, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -11,6 +11,7 @@ const UserForm = ({ form, processForm }) => {
     email: "",
   };
   const [formData, setFormData] = useState(initialState);
+  const [error, setError] = useState(null); // State to hold error message
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,29 +21,30 @@ const UserForm = ({ form, processForm }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      processForm(formData);
-    } catch (error) {}
-
-    console.log("formData:", formData);
+      setError(null); // Clear any previous errors
+      await processForm(formData);
+    } catch (error) {
+      setError(error.message); // Set error message state
+    }
   };
 
   return (
     <ChakraProvider>
       <Helmet>
-        <title> {form}</title>
+        <title>{form}</title>
       </Helmet>
 
       <div className="App" fontFamily={"MoriaCitadel"}>
         <header className="App-header">
           <Link to={"/"}>
-            <Button colorScheme="blue"> Home</Button>
+            <Button colorScheme="blue">Home</Button>
           </Link>
 
           <h1>{form}</h1>
-          <br></br>
+          <br />
 
           <form>
             <Stack size={3}>
@@ -76,6 +78,8 @@ const UserForm = ({ form, processForm }) => {
                 type="password"
               />
             </Stack>
+            {error && <Text color="red">{error}</Text>}{" "}
+            {/* Render error message */}
             <Button colorScheme="blue" type="submit" onClick={handleSubmit}>
               {form}
             </Button>
