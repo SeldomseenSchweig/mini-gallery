@@ -1,11 +1,25 @@
-import React from "react";
-import "./signup.css";
+import React, { useState } from "react";
+import "./userForm.css";
 import { ChakraProvider, Button, Input, Stack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import Nav from "../navbar/Navbar";
 
-function Signup({ form }) {
+const UserForm = ({ form, processForm }) => {
+  const initialState = {
+    username: "",
+    password: "",
+    email: "",
+  };
+  const [formData, setFormData] = useState(initialState);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((data) => ({
+      ...data,
+      [name]: value,
+    }));
+  };
+
   return (
     <ChakraProvider>
       <Helmet>
@@ -27,12 +41,16 @@ function Signup({ form }) {
                 focusBorderColor="lime"
                 className="input"
                 placeholder="Username"
+                name="username"
+                onChange={handleChange}
               />
               {form === "Sign up" ? (
                 <Input
                   focusBorderColor="lime"
                   className="input"
                   placeholder="Email"
+                  name="email"
+                  onChange={handleChange}
                 />
               ) : (
                 <></>
@@ -42,6 +60,8 @@ function Signup({ form }) {
                 focusBorderColor="lime"
                 className="input"
                 placeholder="Password"
+                name="password"
+                onChange={handleChange}
                 type="password"
               />
             </Stack>
@@ -53,6 +73,6 @@ function Signup({ form }) {
       </div>
     </ChakraProvider>
   );
-}
+};
 
-export default Signup;
+export default UserForm;

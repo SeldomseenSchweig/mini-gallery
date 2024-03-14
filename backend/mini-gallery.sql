@@ -15,6 +15,14 @@ CREATE TABLE users (
   is_admin BOOLEAN NOT NULL DEFAULT FALSE
 );
 
+CREATE TABLE projects (
+  id SERIAL PRIMARY KEY,
+  supplies ARRAY,
+  paints ARRAY,
+  name VARCHAR(25),
+  isComplete BOOLEAN DEFAULT FALSE
+);
+
 INSERT INTO users 
   ( username, password, email )
   VALUES 

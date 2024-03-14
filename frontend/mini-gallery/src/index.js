@@ -2,46 +2,49 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Splash from "./components/splash/Splash";
-import Signup from "./components/signup/Signup";
+import UserForm from "./components/userform/UserForm";
 import Navbar from "./components/navbar/Navbar";
 import "./index.css";
 import theme from "./theme";
-import axios from "axios";
+import MiniaturesApi from "./api";
 import { ChakraProvider, Button } from "@chakra-ui/react";
 
 const App = () => {
   // Create a state variable to track the login status
-  const [isLoggedIn, setLoggedIn] = useState(false);
-  const [signedUp, setSignedUp] = useState(false);
+  const [isSignedIn, setSignedIn] = useState(false);
+  const [signUp, setSignUp] = useState(false);
 
   // Function to handle login
-  const handleLogin = () => {
-    setLoggedIn(true);
+  const handleSignIn = () => {
+    setSignedIn(true);
   };
-  const handleSignUp = () => {
-    setSignedUp(true);
+  const handleSignUp = ({ username, password, email }) => {
+    try {
+      MiniaturesApi.register(username, password, email);
+      setSignUp(true);
+    } catch (error) {
+      alert(error);
+    }
   };
 
   // Function to handle logout
   const handleLogout = () => {
-    setLoggedIn(false);
+    setSignedIn(false);
     alert("You have been logged out");
   };
 
   return (
     <Router>
-      <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+      <Navbar isLoggedIn={isSignedIn} onLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Splash />} />
         <Route
           path="/signup"
-          element={<Signup form={"Sign up"} />}
-          handleLogin={handleLogin}
+          element={<UserForm form={"Sign up"} processForm={handleSignUp} />}
         />
         <Route
           path="/signin"
-          element={<Signup form={"Sign in"} />}
-          handleLogin={handleLogin}
+          element={<UserForm form={"Sign in"} processForm={handleSignIn} />}
         />
       </Routes>
     </Router>
