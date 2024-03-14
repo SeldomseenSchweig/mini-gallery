@@ -22,6 +22,10 @@ const UserForm = ({ form, processForm }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    try {
+      processForm(formData);
+    } catch (error) {}
+
     console.log("formData:", formData);
   };
 

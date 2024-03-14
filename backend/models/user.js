@@ -29,5 +29,26 @@ class User {
       return new BadRequestError(`${error}`);
     }
   }
+
+  static async login({ username, password }) {
+    try {
+      const userSearch = await db.query(
+        `SELECT username
+         FROM users
+         WHERE username = $1`,
+        [username]
+      );
+      return userSearch;
+      // if (userSearch.rows[0]) {
+      //   return new BadRequestError(`Wrong User Name ${username}`);
+      // }
+      // let passwordMatch = compare(password, userSearch.password);
+      // console.log(passwordMatch);
+
+      // return result.rows[0];
+    } catch (error) {
+      return new BadRequestError(`${error}`);
+    }
+  }
 }
 module.exports = User;
