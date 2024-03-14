@@ -21,8 +21,13 @@ router.post("/register", async (req, res, next) => {
 });
 
 router.get("/login", async (req, res, next) => {
-  const user = await User.login(req.body);
-  console.log(user);
+  try {
+    const user = await User.login(req.body);
+    if (!user.username) {
+      return res.status(user.status).json(user);
+    }
+    return res.status(200).json(`Sucessfly found user: ${user.username}`);
+  } catch (error) {}
 });
 
 module.exports = router;

@@ -32,20 +32,23 @@ class User {
 
   static async login({ username, password }) {
     try {
+      console.log("USER", username, password);
       const userSearch = await db.query(
-        `SELECT username
+        `SELECT *
          FROM users
          WHERE username = $1`,
         [username]
       );
-      return userSearch;
-      // if (userSearch.rows[0]) {
-      //   return new BadRequestError(`Wrong User Name ${username}`);
-      // }
-      // let passwordMatch = compare(password, userSearch.password);
-      // console.log(passwordMatch);
 
-      // return result.rows[0];
+      if (userSearch.rowCount === 0) {
+        return new NotFoundError(`Wrong User Name ${username}`);
+      }
+      console.log(password === userSearch.rows[0].password);
+      let passwordMatch = await compare(password, userSearch.rows[0].password);
+      console.log(passwordMatch, password, userSearch.rows[0].password);
+      if (!passwordMatch)
+        return new NotFoundError(`No user with that password found`);
+      return userSearch.rows[0];
     } catch (error) {
       return new BadRequestError(`${error}`);
     }
