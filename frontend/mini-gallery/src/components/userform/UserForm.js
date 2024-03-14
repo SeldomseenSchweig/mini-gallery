@@ -20,6 +20,11 @@ const UserForm = ({ form, processForm }) => {
     }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("formData:", formData);
+  };
+
   return (
     <ChakraProvider>
       <Helmet>
@@ -50,6 +55,7 @@ const UserForm = ({ form, processForm }) => {
                   className="input"
                   placeholder="Email"
                   name="email"
+                  value={formData.email}
                   onChange={handleChange}
                 />
               ) : (
@@ -62,10 +68,11 @@ const UserForm = ({ form, processForm }) => {
                 placeholder="Password"
                 name="password"
                 onChange={handleChange}
+                value={formData.password}
                 type="password"
               />
             </Stack>
-            <Button colorScheme="blue" type="submit">
+            <Button colorScheme="blue" type="submit" onClick={handleSubmit}>
               {form}
             </Button>
           </form>
